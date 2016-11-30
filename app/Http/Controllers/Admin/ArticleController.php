@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Input;
 use App\Article;
+use Redirect;
 
 class ArticleController extends Controller
 {
@@ -51,7 +52,7 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
-        return view('admin.article.edit')->withArticles(Article::find($id));
+        return view('admin/article/edit')->withArticles(Article::find($id));
     }
 
     /**
@@ -63,7 +64,7 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required|unique:article,title,'.$id.'|max:255',
+            'title' => 'required|unique:articles,title,'.$id.'|max:255',
             'body' => 'required',
         ]);
 
