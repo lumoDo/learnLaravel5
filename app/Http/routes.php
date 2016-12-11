@@ -18,10 +18,10 @@ Route::auth();
 Route::get('/', 'HomeController@index');
 
   // //创建路由组
-  Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
       Route::get('/', 'HomeController@index');
-
       Route::resource('article', 'ArticleController');
+      Route::resource('comment', 'CommentController');
   });
- Route::get('article/{id}', 'ArticleController@show');
- Route::post('comment', 'CommentController@store');
+Route::get('article/{id}', 'ArticleController@show');
+Route::post('comment', 'CommentController@store');
